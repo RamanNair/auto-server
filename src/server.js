@@ -1,4 +1,4 @@
-// import pool from "./config/database.js";
+import pool from "./config/database.js";
 
 // const [rows] = await pool.query("SELECT * FROM customers");
 
@@ -22,6 +22,16 @@ fastify.get("/api/health", async () => {
     success: true,
     message: "API is healthy",
   };
+});
+
+fastify.get("/api/customers", async () => {
+  const [rows] = await pool.query("SELECT * FROM customers");
+
+  return rows;
+  // return {
+  //   success: true,
+  //   message: "API is healthy",
+  // };
 });
 
 // Your other routes
